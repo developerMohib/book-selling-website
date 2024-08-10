@@ -1,8 +1,9 @@
-# React + Vite
+## This is one kind of book review website, which i build for submitting my assignment when i was a student of PH.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## What kind of packages i have used to build this
+### Dependencies
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- React Router Dom
+- Tailwind CSS
+- Daisy UI, css component
