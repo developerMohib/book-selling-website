@@ -1,5 +1,4 @@
 
-
 const getItemFromSite = () => {
     const getItem = localStorage.getItem('book');
     if(getItem){
@@ -16,4 +15,13 @@ const setItemToSite = (book) => {
 }
 
 
-export {getItemFromSite, setItemToSite }
+// const removeItem = (bookId) => {
+//     let books = getItemFromSite();
+//     console.log('books', books)
+//     const remain = books?.filter(book => book.bookId !== bookId);
+//     console.log('id from', remain)
+//     localStorage.setItem('book', JSON.stringify(remain));
+//     // return remain;
+// };
+
+export { getItemFromSite, setItemToSite,  };
