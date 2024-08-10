@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import Header from "./Header/Header";
 import { TiDelete } from "react-icons/ti";
 import { useState, useEffect } from "react";
-import {  setItemToSite } from "./assets/LocalStorage/LocalStorage";
+import { removeItem, setItemToSite } from "./assets/LocalStorage/LocalStorage";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -15,16 +15,21 @@ function App() {
       .then((res) => res.json())
       .then((data) => setBooks(data));
   }, []);
-
   const addToCart = (bookCart) => {
-    console.log(bookCart, 'bookd')
-    setCartItem([...cartItem, bookCart]);
-    setItemToSite(bookCart);
-    toast.success("Successfully added !");
+    const isExist = cartItem.some((item) => item.bookId === bookCart.bookId);
+    if (isExist) {
+      toast("This is not good Job, bro !", {
+        icon: "👏",
+      });
+    } else {
+      setCartItem([...cartItem, bookCart]);
+      setItemToSite(bookCart);
+      toast.success("Successfully added !");
+    }
   };
-  const handleDelete = () => {
-    // removeItem(id);
-  }
+  const handleDelete = (id) => {
+    removeItem(id);
+  };
 
   return (
     <>
@@ -49,7 +54,7 @@ function App() {
                         <p>{book.bookStatus}</p>
                         <div className="w-full">
                           <button
-                            onClick={() => addToCart(book.bookId)}
+                            onClick={() => addToCart(book)}
                             className="btn bg-green-500 p-3 rounded-lg "
                           >
                             Buy Now
@@ -80,7 +85,10 @@ function App() {
                     <h2 className="text-sm">{item.bookPrice} </h2>
                     <button>
                       {" "}
-                      <TiDelete onClick={ ()=>handleDelete( item?.bookId )} className="text-2xl hover:divide-orange-500 " />{" "}
+                      <TiDelete
+                        onClick={() => handleDelete(item?.bookId)}
+                        className="text-2xl hover:divide-orange-500 "
+                      />{" "}
                     </button>
                   </div>
                 );
